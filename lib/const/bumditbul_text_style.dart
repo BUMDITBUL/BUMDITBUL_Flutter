@@ -36,4 +36,28 @@ class BumditbulTextStyle{
       overflow: TextOverflow.ellipsis,
     );
   }
+  static TextStyle BannerTxtWhite({required Color color}){
+    return TextStyle(
+      color: BumditbulColors.white,
+      fontFamily: 'Inter',
+      fontWeight: FontWeight.w700,
+      overflow: TextOverflow.ellipsis,
+    );
+  }
+  static TextStyle BannerTxtGreen({required Color color}){
+    return TextStyle(
+      color: BumditbulColors.green400,
+      fontFamily: 'Inter',
+      fontWeight: FontWeight.w700,
+      overflow: TextOverflow.ellipsis,
+    );
+  }
+  static TextStyle MainDate({required Color color}){
+    return TextStyle(
+      color: BumditbulColors.white,
+      fontFamily: 'Inter',
+      fontWeight: FontWeight.w600,
+      overflow: TextOverflow.ellipsis,
+    );
+  }
 }
