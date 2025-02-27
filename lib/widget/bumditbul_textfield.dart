@@ -6,12 +6,14 @@ class CustomTextField extends StatefulWidget {
   final String hintText;
   final TextEditingController? controller;
   final bool password;
+  final Widget? suffixIcon;
 
   const CustomTextField({
     super.key,
     required this.hintText,
     this.controller,
     required this.password,
+    this.suffixIcon,
   });
 
   @override
@@ -40,6 +42,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         disabledBorder: border,
         focusedErrorBorder: border,
         contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+        suffixIcon: widget.suffixIcon,
       ),
       keyboardType: TextInputType.text,
     );

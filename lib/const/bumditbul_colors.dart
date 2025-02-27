@@ -10,7 +10,7 @@ class BumditbulColors{
   static Color black500 = const Color(0xFF9E9E9E);
   static Color black600 = const Color(0xFF757575);
   static Color black700 = const Color(0xFF616161);
-  static Color black8000 = const Color(0xFF424242);
+  static Color black800 = const Color(0xFF424242);
   static Color black900 = const Color(0xFF212121);
   static Color black = const Color(0xFF000000);
 

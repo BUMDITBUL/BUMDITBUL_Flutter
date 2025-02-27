@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../component/bumditbul_loginjoin_button.dart';
-import '../component/bumditbul_textfield.dart';
+import '../widget/bumditbul_loginjoin_button.dart';
+import '../widget//bumditbul_textfield.dart';
 import '../const/bumditbul_colors.dart';
-import '../widget/backarrow.dart';
+import '../component/backarrow.dart';
 
 class JoinScreen extends StatefulWidget {
   const JoinScreen({super.key});
@@ -15,11 +15,36 @@ class JoinScreen extends StatefulWidget {
 class _JoinScreenState extends State<JoinScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmController = TextEditingController();
+  String? errorMessage;
+
+  bool _isPasswordVisible = false;
+  bool _isConfirmVisible = false;
+
+  bool _validateEmail(String email) {
+    return RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$').hasMatch(email);
+  }
+
+  void _join() {
+    Focus.of(context).unfocus();
+    setState(() {
+      bool isEmail = emailController.text.isEmpty || !_validateEmail(emailController.text);
+      bool isPassword = passwordController.text.isEmpty;
+      bool isConfirmPassword = confirmController.text.isEmpty || confirmController.text != passwordController.text;
+
+      if (isEmail || isPassword || isConfirmPassword) {
+        errorMessage = '입력하신 정보를 확인해주세요.';
+      } else {
+        errorMessage = null;
+      }
+    });
+  }
 
   @override
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
+    confirmController.dispose();
     super.dispose();
   }
 
@@ -51,12 +76,47 @@ class _JoinScreenState extends State<JoinScreen> {
                 CustomTextField(
                   hintText: '비밀번호를 입력해주세요',
                   controller: passwordController,
-                  password: true,
+                  password: !_isPasswordVisible,
+                  suffixIcon: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _isPasswordVisible = !_isPasswordVisible;
+                      });
+                    },
+                    child: Icon(
+                      _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
-                const SizedBox(height: 30),
+                const SizedBox(height: 20),
+                CustomTextField(
+                    hintText: '비밀번호를 다시 입력해주세요',
+                    controller: confirmController,
+                    password: !_isConfirmVisible,
+                  suffixIcon: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _isConfirmVisible = !_isConfirmVisible;
+                      });
+                    },
+                    child: Icon(
+                      _isConfirmVisible ? Icons.visibility : Icons.visibility_off,
+                      color: Colors.white,
+                    ),
+                  )
+                ),
+                if (errorMessage != null) ...[
+                  const SizedBox(height: 20),
+                  Text(
+                    errorMessage!,
+                    style: TextStyle(color: BumditbulColors.green400, fontSize: 10),
+                  ),
+                ],
+                const SizedBox(height: 50),
                 LoginJoinButton(
                   onTap: () {
-                    // 로그인 버튼 동작
+                    _join();
                   },
                   text: '회원가입',
                 ),
