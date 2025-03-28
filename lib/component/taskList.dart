@@ -1,5 +1,6 @@
 import 'package:bumditbul_flutter/const/bumditbul_colors.dart';
 import 'package:bumditbul_flutter/const/bumditbul_text_style.dart';
+import 'package:bumditbul_flutter/const/routes.dart';
 import 'package:flutter/material.dart';
 
 class Tasklist extends StatefulWidget {
@@ -51,13 +52,29 @@ class _TasklistState extends State<Tasklist> {
                 },
               ),
             ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, Routes.taskAdd);
+                },
+                child: Container(
+                  width: 60,
+                  height: 100,
+                  decoration: BoxDecoration(
+                    color: BumditbulColors.black900,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(
+                    Icons.add,
+                    color: BumditbulColors.green200,
+                    size: 40,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: BumditbulColors.black900,
-        child: Icon(Icons.add, color: BumditbulColors.green200),
       ),
     );
   }
@@ -103,15 +120,21 @@ class TaskCard extends StatelessWidget {
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(task.time, style: BumditbulTextStyle.TaskTime(color: BumditbulColors.white)),
-            Text(task.score, style: BumditbulTextStyle.TaskRange(color: BumditbulColors.white)),
+            Text(task.time,
+                style:
+                    BumditbulTextStyle.TaskTime(color: BumditbulColors.white)),
+            Text(task.score,
+                style:
+                    BumditbulTextStyle.TaskRange(color: BumditbulColors.white)),
           ],
         ),
         trailing: GestureDetector(
           onTap: onToggle,
           child: Icon(
             Icons.check,
-            color: task.isCompleted ? BumditbulColors.green200 : BumditbulColors.black600,
+            color: task.isCompleted
+                ? BumditbulColors.green200
+                : BumditbulColors.black600,
             size: 20,
           ),
         ),
