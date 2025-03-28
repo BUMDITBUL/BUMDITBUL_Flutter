@@ -1,6 +1,6 @@
 import 'package:bumditbul_flutter/const/bumditbul_colors.dart';
 import 'package:bumditbul_flutter/const/bumditbul_text_style.dart';
-import 'package:bumditbul_flutter/widget/taskList.dart';
+import 'package:bumditbul_flutter/component/taskList.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +30,16 @@ class _MainScreenCalendarState extends State<MainScreenCalendar> {
     super.initState();
     _focusedDay = widget.selectedDate;
     _selectedDay = widget.selectedDate;
+  }
+
+  DateTime _getFirstDay() {
+    final now = DateTime.now();
+    return DateTime(now.year - 3);
+  }
+
+  DateTime _getLastDay() {
+    final now = DateTime.now();
+    return DateTime(now.year + 3);
   }
 
   void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
@@ -133,8 +143,8 @@ class _MainScreenCalendarState extends State<MainScreenCalendar> {
             child: Container(
               child: TableCalendar(
                 locale: 'ko_KR',
-                firstDay: DateTime.utc(2020, 1, 1),
-                lastDay: DateTime.utc(2030, 12, 31),
+                firstDay: _getFirstDay(),
+                lastDay: _getLastDay(),
                 focusedDay: _focusedDay,
                 selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
                 calendarFormat: CalendarFormat.month,

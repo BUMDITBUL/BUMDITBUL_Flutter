@@ -2,6 +2,7 @@ import 'package:bumditbul_flutter/const/bumditbul_colors.dart';
 import 'package:bumditbul_flutter/const/bumditbul_text_style.dart';
 import 'package:bumditbul_flutter/view/mypage_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:bumditbul_flutter/const/routes.dart';
 
 class BumditbulAppbar extends StatelessWidget implements PreferredSizeWidget {
 
@@ -12,6 +13,7 @@ class BumditbulAppbar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: BumditbulColors.black900,
       elevation: 0,
+      automaticallyImplyLeading: false,
       centerTitle: false,
       title: Padding(
         padding: EdgeInsets.only(left: 10),
@@ -23,17 +25,14 @@ class BumditbulAppbar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         GestureDetector(
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => MypageScreen()),
-            );
+            Navigator.pushNamed(context, Routes.mypage);
           },
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Icon(
               Icons.account_circle_rounded,
               color: BumditbulColors.green400,
-              size: 20,
+              size: 30,
             ),
           ),
         )

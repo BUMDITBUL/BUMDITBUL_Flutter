@@ -1,8 +1,8 @@
 import 'package:bumditbul_flutter/const/bumditbul_colors.dart';
 import 'package:flutter/material.dart';
 
-class Backarrow extends StatelessWidget implements PreferredSizeWidget{
-  const Backarrow({super.key});
+class BackArrow extends StatelessWidget implements PreferredSizeWidget{
+  const BackArrow({super.key});
 
   @override
   Widget build(BuildContext context) {

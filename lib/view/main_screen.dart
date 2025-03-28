@@ -1,6 +1,6 @@
-import 'package:bumditbul_flutter/widget/bumditbul_appbar.dart';
+import 'package:bumditbul_flutter/component/bumditbul_appbar.dart';
 import 'package:bumditbul_flutter/widget//main_screen_banner.dart';
-import 'package:bumditbul_flutter/widget/main_screen_calendar.dart';
+import 'package:bumditbul_flutter/component/main_screen_calendar.dart';
 import 'package:bumditbul_flutter/const/bumditbul_colors.dart';
 import 'package:flutter/material.dart';
 
