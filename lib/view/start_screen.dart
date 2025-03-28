@@ -3,6 +3,7 @@ import 'package:bumditbul_flutter/view/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:bumditbul_flutter/const/bumditbul_colors.dart';
 import 'package:bumditbul_flutter/const/bumditbul_text_style.dart';
+import 'package:bumditbul_flutter/const/routes.dart';
 
 class StartScreen extends StatefulWidget {
   const StartScreen({super.key});
@@ -31,12 +32,7 @@ class _StartScreenState extends State<StartScreen> {
                 const SizedBox(height: 70),
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const LoginScreen(),
-                      ),
-                    );
+                    Navigator.pushNamed(context, Routes.login);
                   },
                   child: Container(
                     width: double.infinity,
@@ -56,12 +52,7 @@ class _StartScreenState extends State<StartScreen> {
                 const SizedBox(height: 10),
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const JoinScreen(),
-                      ),
-                    );
+                    Navigator.pushNamed(context, Routes.join);
                   },
                   child: Container(
                     width: double.infinity,

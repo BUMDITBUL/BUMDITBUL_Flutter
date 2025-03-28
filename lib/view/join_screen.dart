@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../widget/bumditbul_loginjoin_button.dart';
 import '../widget//bumditbul_textfield.dart';
 import '../const/bumditbul_colors.dart';
@@ -22,15 +21,18 @@ class _JoinScreenState extends State<JoinScreen> {
   bool _isConfirmVisible = false;
 
   bool _validateEmail(String email) {
-    return RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$').hasMatch(email);
+    return RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$')
+        .hasMatch(email);
   }
 
   void _join() {
     Focus.of(context).unfocus();
     setState(() {
-      bool isEmail = emailController.text.isEmpty || !_validateEmail(emailController.text);
+      bool isEmail =
+          emailController.text.isEmpty || !_validateEmail(emailController.text);
       bool isPassword = passwordController.text.isEmpty;
-      bool isConfirmPassword = confirmController.text.isEmpty || confirmController.text != passwordController.text;
+      bool isConfirmPassword = confirmController.text.isEmpty ||
+          confirmController.text != passwordController.text;
 
       if (isEmail || isPassword || isConfirmPassword) {
         errorMessage = '입력하신 정보를 확인해주세요.';
@@ -51,7 +53,7 @@ class _JoinScreenState extends State<JoinScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Backarrow(),
+      appBar: BackArrow(),
       backgroundColor: BumditbulColors.black900,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -84,7 +86,9 @@ class _JoinScreenState extends State<JoinScreen> {
                       });
                     },
                     child: Icon(
-                      _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                      _isPasswordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off,
                       color: Colors.white,
                     ),
                   ),
@@ -94,23 +98,25 @@ class _JoinScreenState extends State<JoinScreen> {
                     hintText: '비밀번호를 다시 입력해주세요',
                     controller: confirmController,
                     password: !_isConfirmVisible,
-                  suffixIcon: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _isConfirmVisible = !_isConfirmVisible;
-                      });
-                    },
-                    child: Icon(
-                      _isConfirmVisible ? Icons.visibility : Icons.visibility_off,
-                      color: Colors.white,
-                    ),
-                  )
-                ),
+                    suffixIcon: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _isConfirmVisible = !_isConfirmVisible;
+                        });
+                      },
+                      child: Icon(
+                        _isConfirmVisible
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                        color: Colors.white,
+                      ),
+                    )),
                 if (errorMessage != null) ...[
                   const SizedBox(height: 20),
                   Text(
                     errorMessage!,
-                    style: TextStyle(color: BumditbulColors.green400, fontSize: 10),
+                    style: TextStyle(
+                        color: BumditbulColors.green400, fontSize: 10),
                   ),
                 ],
                 const SizedBox(height: 50),
